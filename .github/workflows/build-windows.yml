@@ -12,7 +12,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - { sys: mingw32, env: i686, win: win32 }
           - { sys: mingw64, env: x86_64, win: win64 }
     name: ${{ matrix.win }}
     defaults:
@@ -98,16 +97,8 @@ jobs:
         cmake . -G Ninja -DCMAKE_PREFIX_PATH=C:/Libraries -DCMAKE_BUILD_TYPE=Release
         cmake --build .
         strip -g m8c.exe
-        if [ ${{ matrix.win }} == "win32" ]
-        then        
-          cp C:/Libraries/bin/SDL3.dll .
-          cp /mingw32/bin/libgcc_s_dw2-1.dll .
-          cp /mingw32/bin/libserialport-0.dll .
-          cp /mingw32/bin/libwinpthread-1.dll .
-        else
-          cp C:/Libraries/bin/SDL3.dll .
-          cp /mingw64/bin/libserialport-0.dll .
-        fi
+        cp C:/Libraries/bin/SDL3.dll .
+        cp /mingw64/bin/libserialport-0.dll .
         unix2dos README.md LICENSE AUDIOGUIDE.md
     - name: 'Upload artifact (win32)'
       if: matrix.win == 'win32'
