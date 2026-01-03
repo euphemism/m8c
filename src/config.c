@@ -122,7 +122,7 @@ void write_config(const config_params_s *conf) {
 
   SDL_Log("Writing config file to %s", config_path);
 
-#define INI_LINE_COUNT 50
+#define INI_LINE_COUNT 60
 #define INI_LINE_LENGTH 50
 
   // Entries for the config file
